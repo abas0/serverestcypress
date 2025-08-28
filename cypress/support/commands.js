@@ -23,3 +23,26 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('createUser', (email, admin) => {
+  return cy.request({
+    method: 'POST',
+    url: 'https://serverest.dev/usuarios',
+    body: {
+      nome: 'Usuário Teste',
+      email,
+      password: 'Senha@123',
+      administrador: admin 
+    }
+  })
+})
+
+Cypress.Commands.add('getToken', (email, password = 'Senha@123') => {
+    return cy.request('POST', 'https://serverest.dev/login', {
+        email,
+        password
+    }).then((response) => {
+        expect(response.status).to.eq(200)
+        return cy.wrap(response.body.authorization) // corrigido!
+    })
+})

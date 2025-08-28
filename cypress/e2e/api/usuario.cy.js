@@ -1,6 +1,6 @@
 // Cadastrar um usuário com sucesso e pesquisá-lo na lista de usuários
 
-context("POST /usuarios", () => {
+describe("POST /usuarios", () => {
     const email = `taylor${Date.now()}@qa.com.br`
     let userId 
 
