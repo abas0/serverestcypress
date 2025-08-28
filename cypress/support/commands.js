@@ -43,6 +43,6 @@ Cypress.Commands.add('getToken', (email, password = 'Senha@123') => {
         password
     }).then((response) => {
         expect(response.status).to.eq(200)
-        return cy.wrap(response.body.authorization) // corrigido!
+        return cy.wrap(response.body.authorization)
     })
 })

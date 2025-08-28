@@ -19,7 +19,10 @@ describe("POST /produtos", () => {
 
     after(() => {
         if (userId) {
-            cy.request('DELETE', `https://serverest.dev/usuarios/${userId}`)
+            cy.request({
+                method: "DELETE", 
+                url: `${Cypress.env("API_URL")}/usuarios/${userId}`
+            })
         }
     })
 
@@ -27,7 +30,7 @@ describe("POST /produtos", () => {
     it("Tentar cadastrar um produto não sendo admin", () => {
         cy.request({
             method: "POST", 
-            url: "https://serverest.dev/produtos",
+            url: `${Cypress.env("API_URL")}/produtos`,
             headers:{
                 authorization: token
             },
