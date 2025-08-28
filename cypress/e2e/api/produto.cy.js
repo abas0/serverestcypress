@@ -17,16 +17,6 @@ describe("POST /produtos", () => {
         })
     })
 
-    after(() => {
-        if (userId) {
-            cy.request({
-                method: "DELETE", 
-                url: `${Cypress.env("API_URL")}/usuarios/${userId}`
-            })
-        }
-    })
-
-
     it("Tentar cadastrar um produto não sendo admin", () => {
         cy.request({
             method: "POST", 
@@ -45,5 +35,14 @@ describe("POST /produtos", () => {
             expect(response.status).to.eq(403)
             expect(response.body.message).to.eq('Rota exclusiva para administradores')
         })
+    })
+
+    after(() => {
+        if (userId) {
+            cy.request({
+                method: "DELETE", 
+                url: `${Cypress.env("API_URL")}/usuarios/${userId}`
+            })
+        }
     })
 })

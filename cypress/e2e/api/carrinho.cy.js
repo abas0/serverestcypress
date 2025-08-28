@@ -21,24 +21,6 @@ describe("POST /carrinhos", () => {
         })
     })
 
-    after(() => {
-        if (productId){
-            cy.request({
-                method: "DELETE",
-                url: `${Cypress.env("API_URL")}/produtos/${productId}`,
-                headers: {
-                    authorization: token
-                }
-            })
-        }
-        if (userId) {
-            cy.request({
-                method: "DELETE", 
-                url: `${Cypress.env("API_URL")}/usuarios/${userId}`
-            })
-        }
-    })
-
     it("Fluxo completo de uma compra e analisar a quantidade do produto diminuindo", () => {
         cy.request({
             method: "POST",
@@ -98,6 +80,23 @@ describe("POST /carrinhos", () => {
             })
         })
 
+    })
 
+    after(() => {
+        if (productId){
+            cy.request({
+                method: "DELETE",
+                url: `${Cypress.env("API_URL")}/produtos/${productId}`,
+                headers: {
+                    authorization: token
+                }
+            })
+        }
+        if (userId) {
+            cy.request({
+                method: "DELETE", 
+                url: `${Cypress.env("API_URL")}/usuarios/${userId}`
+            })
+        }
     })
 })
