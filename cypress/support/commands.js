@@ -29,7 +29,7 @@ Cypress.Commands.add('createUser', (email, admin) => {
     method: 'POST',
     url: 'https://serverest.dev/usuarios',
     body: {
-      nome: 'Usuário Teste',
+      nome: 'Beatriz Teste',
       email,
       password: 'Senha@123',
       administrador: admin 

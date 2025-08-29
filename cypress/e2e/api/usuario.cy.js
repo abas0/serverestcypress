@@ -1,12 +1,12 @@
 // Cadastrar um usuário com sucesso e pesquisá-lo na lista de usuários
 
-import { criarUsuario } from "../../support/utils";
+import { criarUsuarioSucesso } from "../../support/utils";
 
 describe("POST /usuarios", () => {
     let userId;
     let email;
-        it("Cadastrar um usuário com sucesso", () => {
-        criarUsuario("true").then((user) => {
+    it("Cadastrar um usuário com sucesso", () => {
+        criarUsuarioSucesso("true").then((user) => {
             email = user.email;
             userId = user.userId;
 
@@ -16,7 +16,7 @@ describe("POST /usuarios", () => {
                 url: `${Cypress.env("API_URL")}/usuarios/${userId}`
             }).then((response) => {
                 expect(response.status).to.eq(200);
-                expect(response.body).to.have.property('nome', 'Usuário Teste'); // nome padrão da função
+                expect(response.body).to.have.property('nome', 'Beatriz Teste');
                 expect(response.body).to.have.property('email', email);
                 expect(response.body).to.have.property('administrador', 'true');
             });
